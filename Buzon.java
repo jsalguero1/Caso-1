@@ -4,7 +4,10 @@ public class Buzon{
     private int tamano;
     private ArrayList<Producto> productos = new ArrayList<>();
 
-    public Buzon(int _tamano){
-        this.tamano = _tamano;
+    public Buzon(){
+    }
+
+    public void setSize(int _size){
+        this.tamano = _size;
     }
 }
