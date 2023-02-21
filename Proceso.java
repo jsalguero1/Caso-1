@@ -15,7 +15,9 @@ public class Proceso extends Thread{
 
    @Override
    public void run() {
-       System.out.println("Proceso: " + this.id + " color: " + this.color);
+    System.out.println("***********************************************");
+    System.out.println("Proceso: " + this.id + " color: " + this.color);
+    System.out.println("***********************************************");
    }
 
    public void setBuzonSalida(Buzon _salida){
@@ -28,7 +30,7 @@ public class Proceso extends Thread{
 
    public void crearProducto(int _cantidad){
         for (int i = 0; i < _cantidad; i++) {
-            String mensaje = "Producto del proceso :" + this.id + "color: " + this.color;
+            String mensaje = "Producto del proceso :" + this.id + " color: " + this.color;
             Producto producto = new Producto(i,mensaje, this.color);
             productos.add(producto);
         }
@@ -36,7 +38,9 @@ public class Proceso extends Thread{
    
    public void printProductos(){
     for (int i = 0; i < productos.size(); i++) {
+        System.out.println("=============================================");
         System.out.println(productos.get(i).getMensaje());
+        System.out.println("=============================================");
     }
    }
 
