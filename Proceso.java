@@ -21,7 +21,7 @@ public class Proceso extends Thread{
    public void run() {
        while (true) {
         if (this.id < 14+this.procesos) {
-            Producto producto = new Producto(this.id, this.color);
+            Producto producto = new Producto(this.id+contador, this.color);
             ChangeMessage(producto);
             this.buzonEnt.agregarProducto(producto);
         }else {
