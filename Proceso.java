@@ -18,6 +18,15 @@ public class Proceso extends Thread{
     System.out.println("***********************************************");
     System.out.println("Proceso: " + this.id + " color: " + this.color);
     System.out.println("***********************************************");
+
+    for (int i = 0; i < productos.size(); i++) {
+        entregarMensaje(productos.get(i));
+    }
+
+   }
+
+   public void entregarMensaje(Producto _producto){
+    buzonEnt.recibirProducto(_producto);
    }
 
    public void setBuzonSalida(Buzon _salida){

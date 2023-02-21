@@ -7,12 +7,12 @@ public class Main {
         System.out.println("Empieza el proceso");
 
         System.out.print("Por favor ingresa el numero de procesos que quieres crear: ");
-        int procesos;
+        final int procesos;
         Scanner sc = new Scanner(System.in);
         procesos = Integer.parseInt(sc.nextLine());
 
         System.out.print("Por favor ingresa el numero de productos que quieres que tenga cada proceso: ");
-        int productos;
+        final int productos;
         productos = Integer.parseInt(sc.nextLine());
 
         System.out.print("Por favor ingresa el tamaño de cada buzón: ");
@@ -29,24 +29,20 @@ public class Main {
                 Proceso proceso = new Proceso(i, Color.NARANJA);
                 proceso.setBuzonSalida(B1);
                 proceso.crearProducto(productos);
-                proceso.printProductos();
                 proceso.start();
                 try {
                     proceso.join();
                 } catch (InterruptedException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             } else{
                 Proceso proceso = new Proceso(i, Color.AZUL);
                 proceso.setBuzonSalida(B1);
                 proceso.crearProducto(productos);
-                proceso.printProductos();
                 proceso.start();
                 try {
                     proceso.join();
                 } catch (InterruptedException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
@@ -58,12 +54,10 @@ public class Main {
                 proceso.setBuzonSalida(B2);
                 proceso.setBuzonEntrada(B1);
                 proceso.crearProducto(productos);
-                proceso.printProductos();
                 proceso.start();
                 try {
                     proceso.join();
                 } catch (InterruptedException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             } else{
@@ -71,12 +65,10 @@ public class Main {
                 proceso.setBuzonSalida(B2);
                 proceso.setBuzonEntrada(B1);
                 proceso.crearProducto(productos);
-                proceso.printProductos();
                 proceso.start();
                 try {
                     proceso.join();
                 } catch (InterruptedException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
@@ -88,12 +80,10 @@ public class Main {
                 proceso.setBuzonSalida(B3);
                 proceso.setBuzonEntrada(B2);
                 proceso.crearProducto(productos);
-                proceso.printProductos();
                 proceso.start();
                 try {
                     proceso.join();
                 } catch (InterruptedException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             } else{
@@ -101,12 +91,10 @@ public class Main {
                 proceso.setBuzonSalida(B3);
                 proceso.setBuzonEntrada(B2);
                 proceso.crearProducto(productos);
-                proceso.printProductos();
                 proceso.start();
                 try {
                     proceso.join();
                 } catch (InterruptedException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
@@ -118,7 +106,6 @@ public class Main {
         try {
             proceso.join();
         } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
