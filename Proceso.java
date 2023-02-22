@@ -5,29 +5,12 @@ public class Proceso extends Thread{
     private int id;
     private Color color;
     private Buzon buzonEnt, buzonSal;
-    private int contador = 0;
     private ArrayList<Producto> productos = new ArrayList<>();
 
     public Proceso(int _id, Color _color){
         this.id = _id;
         this.color = _color;
     }
-
-   @Override
-   public void run() {
-    System.out.println("***********************************************");
-    System.out.println("Proceso: " + this.id + " color: " + this.color);
-    System.out.println("***********************************************");
-
-    for (int i = 0; i < productos.size(); i++) {
-        entregarMensaje(productos.get(i));
-    }
-
-   }
-
-   public void entregarMensaje(Producto _producto){
-    buzonEnt.recibirProducto(_producto);
-   }
 
    public void setBuzonSalida(Buzon _salida){
     this.buzonSal = _salida;
@@ -37,21 +20,45 @@ public class Proceso extends Thread{
     this.buzonEnt = _entrada;
    }
 
+   public Color getColor() {
+       return color;
+   }
+
+   public int getIdProceso() {
+       return id;
+   }
+
+   public ArrayList<Producto> getProductos() {
+       return productos;
+   }
+
+   public void agregarProducto(Producto _producto){
+    this.productos.add(_producto);
+   }
+
+   @Override
+   public void run() {
+    System.out.println("THREAD: " + this.id + " color: " + this.color + " creado");
+   }
+
+   /**
+    * Crea un producto
+    * @param _cantidad cantidad de productos a ser creados
+    */
    public void crearProducto(int _cantidad){
         for (int i = 0; i < _cantidad; i++) {
-            String mensaje = "Producto del proceso :" + this.id + " color: " + this.color;
+            String mensaje = "Color: " + getColor() + " Thread original: " + getIdProceso() + " marcas: ";
             Producto producto = new Producto(i,mensaje, this.color);
             productos.add(producto);
         }
    }  
-   
+
+   /**
+    * Imprime el mensaje de los productos del thread
+    */
    public void printProductos(){
     for (int i = 0; i < productos.size(); i++) {
-        System.out.println("=============================================");
         System.out.println(productos.get(i).getMensaje());
-        System.out.println("=============================================");
     }
    }
-
-
 }

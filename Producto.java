@@ -21,4 +21,8 @@ public class Producto{
         return color;
     }
 
+    public void setMensaje(String _marca){
+        this.mensaje.concat(" " + _marca);
+    }
+
 }
