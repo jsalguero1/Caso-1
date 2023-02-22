@@ -15,30 +15,35 @@ public class Proceso extends Thread{
         this.buzonSal = _buzonSal;
         this.cantidad = _cantidad;
         this.procesos = _cantidad;
+        System.out.println("El proceso " + this.id + " ha sido creado"+ " con color " + this.color+ " con buzon de entrada " + this.buzonEnt+ " con buzon de salida " + this.buzonSal+ " con cantidad " + this.cantidad+ " con procesos " + this.procesos);
     }
 
    @Override
    public void run() {
-       while (true) {
-        if (this.id < 14+this.procesos) {
+        while (true) {
+        if (this.id < 10) {
             Producto producto = new Producto(this.id+contador, this.color);
             ChangeMessage(producto);
-            this.buzonEnt.agregarProducto(producto);
+            this.buzonSal.agregarProducto(producto);
+            System.out.println("El proceso " + this.id + " ha enviado el producto " + producto.getId() + " a " + this.buzonSal);
         }else {
             Producto producto = this.buzonEnt.sacarProducto();
             ChangeMessage(producto);
             this.buzonSal.agregarProducto(producto);
-            System.out.println("El proceso " + id + " ha sacado el producto " + producto.getId() + " con mensaje " + producto.getMensaje());
         }
-            this.contador++;
-            if (this.contador == 10) {
-               break;
-           }
+        this.contador++;
+        if (this.contador == this.cantidad) {
+            break;
+        }
        }
    }
 
    public void ChangeMessage (Producto mensaje){
-         mensaje.setMensaje(mensaje.getMensaje() + " " + this.id); 
+         mensaje.setMensaje(mensaje.getMensaje() + " Proc." + this.id); 
+   }
+
+   public long getId(){
+       return this.id;
    }
 
 

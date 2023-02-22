@@ -1,8 +1,9 @@
-import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Buzon{
     private int tamano;
-    private ArrayList<Producto> productos = new ArrayList<>();
+    private List<Producto> productos = new LinkedList<Producto>();
 
     public Buzon(int _tamano){
         this.tamano = _tamano;
@@ -16,8 +17,12 @@ public class Buzon{
                 }
             }
             this.productos.add(_producto);  
-            notify();     
+            System.out.println("El tamaño del buzon escrito: " + hasProducto());
+            notifyAll();
         }
+    public synchronized int hasProducto(){
+        return this.productos.size();
+    }
 
     public synchronized Producto sacarProducto(){
         while (this.productos.size() == 0) {
@@ -27,7 +32,10 @@ public class Buzon{
                 }
             }     
             Producto message = this.productos.remove(productos.size() - 1);
-            notify();
+            notifyAll();
             return  message;
         }
+        
     }
+
+    
