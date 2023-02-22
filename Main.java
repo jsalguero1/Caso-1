@@ -1,7 +1,9 @@
 import java.util.Scanner;
 
 public class Main {
-
+    static int procesos;
+    static int productos;
+    static int tamBuzon;
     public static void main(String[] args) {
 
         System.out.println("Empieza el proceso");
@@ -11,18 +13,15 @@ public class Main {
          */
         System.out.println("Por favor ingresa el numero de procesos que quieres crear en cada etapa: ");
         System.out.print("-> ");
-        final int procesos;
         Scanner sc = new Scanner(System.in);
         procesos = Integer.parseInt(sc.nextLine());
 
         System.out.println("Por favor ingresa el numero de productos que quieres que tenga cada proceso: ");
         System.out.print("-> ");
-        final int productos;
         productos = Integer.parseInt(sc.nextLine());
 
         System.out.println("Por favor ingresa el tamaño de cada buzón: ");
         System.out.print("-> ");
-        int tamBuzon;
         tamBuzon = Integer.parseInt(sc.nextLine());
         sc.close();
         
@@ -34,93 +33,42 @@ public class Main {
         Buzon B2 = new Buzon();
         B2.setSize(tamBuzon);
         Buzon B3 = new Buzon();
+        B3.setSize(productos);
         
         /**
          * Crea etapa 1
          */
-        for (int i = 0; i < procesos; i++) {
-            if (i == procesos-1){
-                Proceso proceso = new Proceso(i, Color.NARANJA);
-                proceso.setBuzonSalida(B1);
-                proceso.crearProducto(productos);
-                proceso.printProductos();
-                proceso.start();
-                try {
-                    proceso.join();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            } else{
-                Proceso proceso = new Proceso(i, Color.AZUL);
-                proceso.setBuzonSalida(B1);
-                proceso.crearProducto(productos);
-                proceso.start();
-                try {
-                    proceso.join();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
+        Proceso N1 = new Proceso(0, Color.NARANJA);
+        N1.start();
+        N1.setBuzonSalida(B1);
+        for (int i = 1; i < procesos; i++) {
+            Proceso A1 = new Proceso(i, Color.AZUL);
+            A1.setBuzonSalida(B1);
+            A1.start();
         }
 
         /**
          * Crea etapa 2
          */
-        for (int i = procesos; i < procesos*2; i++) {
-            if (i == procesos*2-1){
-                Proceso proceso = new Proceso(i, Color.NARANJA);
-                proceso.setBuzonSalida(B2);
-                proceso.setBuzonEntrada(B1);
-                proceso.crearProducto(productos);
-                proceso.start();
-                try {
-                    proceso.join();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            } else{
-                Proceso proceso = new Proceso(i, Color.AZUL);
-                proceso.setBuzonSalida(B2);
-                proceso.setBuzonEntrada(B1);
-                proceso.crearProducto(productos);
-                proceso.start();
-                try {
-                    proceso.join();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
+        Proceso N2 = new Proceso(procesos, Color.NARANJA);
+        N2.setBuzonSalida(B2);
+        N2.start();
+        for (int i = procesos+1; i < procesos*2; i++) {
+            Proceso A2 = new Proceso(i, Color.AZUL);
+            A2.setBuzonSalida(B2);
+            A2.start();
         }
-
         /**
          * Crea etapa 3
          */
-        for (int i = procesos*2; i < procesos*3; i++) {
-            if (i == procesos*3-1){
-                Proceso proceso = new Proceso(i, Color.NARANJA);
-                proceso.setBuzonSalida(B3);
-                proceso.setBuzonEntrada(B2);
-                proceso.crearProducto(productos);
-                proceso.start();
-                try {
-                    proceso.join();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            } else{
-                Proceso proceso = new Proceso(i, Color.AZUL);
-                proceso.setBuzonSalida(B3);
-                proceso.setBuzonEntrada(B2);
-                proceso.crearProducto(productos);
-                proceso.start();
-                try {
-                    proceso.join();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
+        Proceso N3 = new Proceso(procesos*2, Color.NARANJA);
+        N3.setBuzonSalida(B3);
+        N3.start();
+        for (int i = procesos*2+1; i < procesos*3; i++) {
+            Proceso A3 = new Proceso(i, Color.AZUL);
+            A3.setBuzonSalida(B3);
+            A3.start();
         }
-
         /**
          * crea FINAL
          */

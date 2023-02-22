@@ -39,6 +39,19 @@ public class Proceso extends Thread{
    @Override
    public void run() {
     System.out.println("THREAD: " + this.id + " color: " + this.color + " creado");
+    if(this.id < Main.procesos){
+        crearProducto(Main.productos);
+    }
+    
+    if(this.color != Color.ROJO){
+
+        int i = 0;
+        while(this.productos.size() > 1){
+            Producto producto = productos.get(i);
+            buzonSal.recibirProducto(producto, this);
+        }
+    }      
+
    }
 
    /**
@@ -52,13 +65,4 @@ public class Proceso extends Thread{
             productos.add(producto);
         }
    }  
-
-   /**
-    * Imprime el mensaje de los productos del thread
-    */
-   public void printProductos(){
-    for (int i = 0; i < productos.size(); i++) {
-        System.out.println(productos.get(i).getMensaje());
-    }
-   }
 }

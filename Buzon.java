@@ -22,9 +22,24 @@ public class Buzon{
      * Recibe un producto
      * @param _producto producto a recbir
      * @param _thread thread que esta dejando producto en el buzón
+     * @throws InterruptedException
      */
-    public void recibirProducto(Producto _producto, Proceso _thread){
-        
+    public synchronized void recibirProducto(Producto _producto, Proceso _thread){
+        if (this.productos.size() == tamano){
+            if(_thread.getColor() == Color.AZUL){
+                try {
+                    wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }else if (_thread.getColor() == Color.NARANJA){
+                Thread.yield();
+            }
+        }
+        else{
+            this.productos.add(_producto);
+            notifyAll();
+        }
     }
 
     /**
