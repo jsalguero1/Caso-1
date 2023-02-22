@@ -13,9 +13,10 @@ public class Final extends Thread {
     
     @Override
     public void run() {
+       
         while (true) {
-            Producto producto = this.buzonEnt.sacarProducto();
-            System.out.println("El proceso " + color + " ha sacado el producto " + producto.getId() + " con mensaje " + producto.getMensaje());
+            Producto producto = this.buzonEnt.sacarProducto(this.color);
+            System.out.println("El proceso " + color + " ha sacado el producto: " + producto.getId() + ", con mensaje: " + producto.getMensaje());
             this.contador++;          
             if (this.contador == this.cantidad) {
                 break;
