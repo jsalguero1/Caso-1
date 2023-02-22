@@ -15,7 +15,6 @@ public class Proceso extends Thread{
         this.buzonSal = _buzonSal;
         this.cantidad = _cantidad;
         this.procesos = _cantidad;
-        System.out.println("El proceso " + this.id + " ha sido creado"+ " con color " + this.color+ " con buzon de entrada " + this.buzonEnt+ " con buzon de salida " + this.buzonSal+ " con cantidad " + this.cantidad+ " con procesos " + this.procesos);
     }
 
    @Override
@@ -25,7 +24,6 @@ public class Proceso extends Thread{
             Producto producto = new Producto(this.id+contador, this.color);
             ChangeMessage(producto);
             this.buzonSal.agregarProducto(producto);
-            System.out.println("El proceso " + this.id + " ha enviado el producto " + producto.getId() + " a " + this.buzonSal);
         }else {
             Producto producto = this.buzonEnt.sacarProducto();
             ChangeMessage(producto);
