@@ -39,7 +39,6 @@ public class Main {
         for (int i = 0; i < 3; i++) {
             procesos[i*10] = new Proceso(i*10, Color.NARANJA ,buzones.get(i) ,buzones.get(i+1),productos,Threads );
             procesos[i*10].start();
-            System.out.println("El proceso " + procesos[i*10].getId() + " Buzon ingreso: " + buzones.get(i) + " Buzon salida: " + buzones.get(i+1));
             for (int j = 1; j < Threads; j++) {
                 procesos[i*10+j] = new Proceso((i*10)+j, Color.AZUL ,buzones.get(i) ,buzones.get(i+1),productos,Threads );
                 procesos[i*10+j].start();
