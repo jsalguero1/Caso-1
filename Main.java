@@ -26,7 +26,7 @@ public class Main {
         Buzon Etapa1 = new Buzon(tamBuzon);
         Buzon Etapa2 = new Buzon(tamBuzon);
         Buzon Etapa3 = new Buzon(tamBuzon);
-        Buzon Etapa4 = new Buzon(1000);
+        Buzon Etapa4 = new Buzon(100000);
 
         ArrayList <Buzon> buzones = new ArrayList<Buzon>();
         buzones.add(Etapa1);
@@ -34,17 +34,17 @@ public class Main {
         buzones.add(Etapa3);
         buzones.add(Etapa4);
 
-        Proceso [] procesos = new Proceso[100];
+        Proceso [] procesos = new Proceso[1000];
 
         for (int i = 0; i < 3; i++) {
-            procesos[i*10] = new Proceso(i*10, Color.NARANJA ,buzones.get(i) ,buzones.get(i+1),productos,Threads );
-            procesos[i*10].start();
+            procesos[i*100] = new Proceso(i*10, Color.NARANJA ,buzones.get(i) ,buzones.get(i+1),productos,Threads );
+            procesos[i*100].start();
             for (int j = 1; j < Threads; j++) {
-                procesos[i*10+j] = new Proceso((i*10)+j, Color.AZUL ,buzones.get(i) ,buzones.get(i+1),productos,Threads );
-                procesos[i*10+j].start();
+                procesos[i*100+j] = new Proceso((i*10)+j, Color.AZUL ,buzones.get(i) ,buzones.get(i+1),productos,Threads );
+                procesos[i*100+j].start();
             }
         }
-        Final fin = new Final(Color.ROJO ,buzones.get(3), productos);
+        Final fin = new Final(Color.ROJO ,buzones.get(3), productos*Threads);
         fin.start();
     }
 }

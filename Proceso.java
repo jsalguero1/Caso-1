@@ -18,7 +18,7 @@ public class Proceso extends Thread{
    @Override
    public void run() {
         while (true) {
-        if (this.id < 10) {
+        if (this.id < 100) {
             Producto producto = new Producto(this.id+contador, this.color);
             ChangeMessage(producto);
             this.buzonSal.agregarProducto(producto);
