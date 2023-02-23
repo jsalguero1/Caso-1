@@ -26,7 +26,7 @@ public class Main {
         Buzon Etapa1 = new Buzon(tamBuzon);
         Buzon Etapa2 = new Buzon(tamBuzon);
         Buzon Etapa3 = new Buzon(tamBuzon);
-        Buzon Etapa4 = new Buzon(1000);
+        Buzon Etapa4 = new Buzon(tamBuzon*3);
 
         ArrayList <Buzon> buzones = new ArrayList<Buzon>();
         buzones.add(Etapa1);

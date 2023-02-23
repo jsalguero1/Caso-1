@@ -24,17 +24,18 @@ public class Proceso extends Thread{
             this.buzonSal.agregarProducto(producto);
         }else {
             Producto producto = this.buzonEnt.sacarProducto(this.color);
+            if(producto != null) {
             ChangeMessage(producto);
             this.buzonSal.agregarProducto(producto);
+            }
         }
-        this.contador++;
         if (this.contador == this.cantidad) {
             break;
         }
        }
    }
 
-   public void ChangeMessage (Producto mensaje){
+   public synchronized void ChangeMessage (Producto mensaje){
          mensaje.setMensaje(mensaje.getMensaje() + " Proc." + this.id); 
    }
 
