@@ -56,6 +56,7 @@ public class Buzon{
         while(productos.get(productos.size()-i).getColor() != Color.NARANJA){
             i++;
             if ( productos.size()-i == 0){
+                System.out.println("No hay naranjas");
                 return null;
             }
         }

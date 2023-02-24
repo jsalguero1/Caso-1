@@ -35,13 +35,14 @@ public class Proceso extends Thread{
                     producto = this.buzonEnt.sacarProducto();
                 }
             }
+            System.out.println("El proceso " + id + " ha sacado el producto: " + producto.getColor() + ", con mensaje: " + producto.getMensaje());
             ChangeMessage(producto);
-            this.buzonSal.agregarProducto(producto);}
-
+            this.buzonSal.agregarProducto(producto);
+        }
+        this.contador++;
         if (this.contador == this.cantidad) {
             break;
         }
-        this.contador++;
        }
    }
 

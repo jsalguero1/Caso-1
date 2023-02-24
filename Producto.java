@@ -7,6 +7,7 @@ public class Producto{
         this.id = ids;
         this.color = color;
         this.mensaje = "";
+        System.out.println("Se ha creado el producto: " + this.id + ", con color: " + this.color);
     }
 
     public int getId(){
