@@ -22,7 +22,6 @@ public class Main {
         int tamBuzon;
         tamBuzon = Integer.parseInt(sc.nextLine());
 
-        int naranjas = 0;
         Buzon Etapa1 = new Buzon(tamBuzon);
         Buzon Etapa2 = new Buzon(tamBuzon);
         Buzon Etapa3 = new Buzon(tamBuzon);
@@ -37,10 +36,10 @@ public class Main {
         Proceso [] procesos = new Proceso[1000];
 
         for (int i = 0; i < 3; i++) {
-            procesos[i*100] = new Proceso(i*10, Color.NARANJA ,buzones.get(i) ,buzones.get(i+1),productos,Threads );
+            procesos[i*100] = new Proceso(i*100, Color.NARANJA ,buzones.get(i) ,buzones.get(i+1),productos );
             procesos[i*100].start();
             for (int j = 1; j < Threads; j++) {
-                procesos[i*100+j] = new Proceso((i*10)+j, Color.AZUL ,buzones.get(i) ,buzones.get(i+1),productos,Threads );
+                procesos[i*100+j] = new Proceso((i*100)+j, Color.AZUL ,buzones.get(i) ,buzones.get(i+1),productos );
                 procesos[i*100+j].start();
             }
         }

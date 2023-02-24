@@ -25,31 +25,42 @@ public class Buzon{
         return this.productos.size();
     }
 
-    public synchronized Producto sacarProducto(Color color){
+    public synchronized Producto sacarProducto(){
         Producto message = null;
-        if (this.productos.size() == 0) {
+        while (this.productos.size() == 0) {
             try {
                 wait();
             } catch (Exception e) {
+            }}
+            int i = 1;
+            if (productos.size() == 0){
+                return null;
             }
-        }else{
-            int i =0;
-            while(productos.get(i).getColor() == color ||color == Color.ROJO) {
-                if (i == productos.size()-1){
-                    try {
-                        wait();
-                    } 
-                    catch (Exception e) {
-                    }
-                    finally{
-                        notifyAll();
-                    }
-                }else{
-                    message = this.productos.remove(i);
-                    notifyAll();
+            while(productos.get(productos.size()-i).getColor() != Color.AZUL){
+                i++;
+                if ( productos.size()-i == 0){
+                    return null;
                 }
             }
+            message = this.productos.remove(productos.size()-i);
+            notifyAll();
+            return  message;
+    }
+
+    public synchronized Producto sacaProductoNaranja(){
+        Producto message = null;
+        int i = 1;
+        if (productos.size() == 0){
+            return null;
         }
+        while(productos.get(productos.size()-i).getColor() != Color.NARANJA){
+            i++;
+            if ( productos.size()-i == 0){
+                return null;
+            }
+        }
+        message = this.productos.remove(productos.size()-i);
+        notifyAll();
         return  message;
     }
 }
