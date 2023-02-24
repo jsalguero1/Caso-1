@@ -27,9 +27,9 @@ public class Proceso extends Thread{
         }else {
             Producto producto = null;
             while (producto == null) {
-                if (this.color == color.NARANJA){
+                if (this.color == Color.NARANJA){
                     producto = this.buzonEnt.sacaProductoNaranja();
-                    this.yield();
+                    Proceso.yield();
                 }
                 else{
                     producto = this.buzonEnt.sacarProducto();
@@ -50,9 +50,9 @@ public class Proceso extends Thread{
         Random random = new Random();
         int i = random.nextInt(500);
         try {
-            this.sleep(i);
+            Proceso.sleep(i);
         } catch (Exception e) {
-            // TODO: handle exception
+
         }
         mensaje.setMensaje(mensaje.getMensaje() + ", Proc." + this.id+" Sleep:"+i); 
    }

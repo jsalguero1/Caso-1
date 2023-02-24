@@ -36,7 +36,7 @@ public class Buzon{
             if (productos.size() == 0){
                 return null;
             }
-            while(productos.get(productos.size()-i).getColor() != Color.AZUL){
+            while(productos.get(productos.size()-i).getColor() != Color.AZUL  && i>productos.size()){
                 i++;
                 if ( productos.size()-i == 0){
                     return null;
@@ -53,12 +53,13 @@ public class Buzon{
         if (productos.size() == 0){
             return null;
         }
-        while(productos.get(productos.size()-i).getColor() != Color.NARANJA){
-            i++;
+        while(productos.get(productos.size()-i).getColor() != Color.NARANJA && i > productos.size()){
+            
             if ( productos.size()-i == 0){
                 System.out.println("No hay naranjas");
                 return null;
             }
+            i++;
         }
         message = this.productos.remove(productos.size()-i);
         notifyAll();
