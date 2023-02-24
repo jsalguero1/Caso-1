@@ -43,6 +43,12 @@ public class Main {
             }
         }
         Final fin = new Final(Color.ROJO ,buzones.get(3), productos*Threads);
+        try {
+            fin.join();
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         fin.start();
     }
 }

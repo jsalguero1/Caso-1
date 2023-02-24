@@ -14,7 +14,6 @@ public class Proceso extends Thread{
         this.buzonEnt = _buzonEnt;
         this.buzonSal = _buzonSal;
         this.cantidad = _cantidad;
-        this.cantidad = _cantidad;
     }
 
    @Override
@@ -60,9 +59,5 @@ public class Proceso extends Thread{
    public long getId(){
        return this.id;
    }
-
-  
-
-
 
 }

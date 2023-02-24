@@ -20,11 +20,6 @@ public class Buzon{
         }
         }
 
-
-    public synchronized int hasProducto(){
-        return this.productos.size();
-    }
-
     public synchronized Producto sacarProducto(){
         Producto message = null;
         while (this.productos.size() == 0) {
@@ -36,7 +31,7 @@ public class Buzon{
             if (productos.size() == 0){
                 return null;
             }
-            while(productos.get(productos.size()-i).getColor() != Color.AZUL  && i>productos.size()){
+            while(productos.get(productos.size()-i).getColor() != Color.AZUL  && i > productos.size()){
                 i++;
                 if ( productos.size()-i == 0){
                     return null;
