@@ -5,7 +5,7 @@ public class Final extends Thread {
     private int contador = 0;
     private int cantidad = 0;
 
-    Final(Color _color, Buzon _buzonEnt, int _contador) {
+    public Final(Color _color, Buzon _buzonEnt, int _contador) {
         this.color = _color;
         this.buzonEnt = _buzonEnt;
         this.cantidad = _contador;

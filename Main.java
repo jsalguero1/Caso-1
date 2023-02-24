@@ -19,6 +19,7 @@ public class Main {
         System.out.print("Por favor ingresa el tamaño de cada buzón: ");
         int tamBuzon;
         tamBuzon = Integer.parseInt(sc.nextLine());
+        sc.close();
 
         Buzon Etapa1 = new Buzon(tamBuzon);
         Buzon Etapa2 = new Buzon(tamBuzon);
